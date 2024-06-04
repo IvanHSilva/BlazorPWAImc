@@ -1,4 +1,7 @@
-﻿﻿.slide {
+﻿body {
+}
+
+﻿.slide {
     text-align: center;
     scroll-snap-align: center;
     width: 100%;
