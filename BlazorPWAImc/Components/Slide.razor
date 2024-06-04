@@ -1,7 +1,13 @@
-﻿<div class="slide">
+﻿<div class="slide" id="@Id">
     <h3>Slide</h3>
 </div>
 
 @code {
+    [EditorRequired]
+    [Parameter]
+    public string Id { get; set; } = Strings.empty;
 
+    [EditorRequired]
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } = null!;
 }
