@@ -1,11 +1,11 @@
 ﻿<div class="slide" id="@Id">
-    <h3>Slide</h3>
+    @ChildContent
 </div>
 
 @code {
     [EditorRequired]
     [Parameter]
-    public string Id { get; set; } 
+    public string Id { get; set; } = String.Empty;
 
     [EditorRequired]
     [Parameter]
