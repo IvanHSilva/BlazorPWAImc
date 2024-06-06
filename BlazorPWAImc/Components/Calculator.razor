@@ -27,11 +27,32 @@
     </div>
 </EditForm>
 
-@code {
+<Dialog @ref="_dialog" OnModalCloseCallback="@OnModalClose">
+    @if (_model.Imc <= 18.6) {
+        <h2>Abaixo do peso</h2>
+        <p>Você está abaixo do peso indicado.</p>
+    } else if (_model.Imc > 18.6 && _model.Imc <= 24.9) {
+        <h2>Peso ideal</h2>
+        <p>Você está na faixa de peso ideal.</p>
+    } else if (_model.Imc > 24.9) {
+        <h2>Sobrepeso</h2>
+        <p>Você está acima do peso indicado.</p>
+    }
 
+    <h2>Modal</h2>
+</Dialog>
+
+@code {
+    private Dialog _dialog = null!;
     private ImcModels _model = new();
 
     public async Task OnSubmitAsync() {
+        await ShowModalAsync();
+    }
 
+    private Task ShowModalAsync() => _dialog.ShowModalAsync();
+
+    private async Task OnModalClose() {
+        _model = new();
     }
 }
