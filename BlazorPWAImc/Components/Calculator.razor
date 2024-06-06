@@ -1,4 +1,6 @@
-﻿<EditForm Model="@_model" OnValidSubmit="@OnSubmitAsync">
+﻿@inject Blazored.LocalStorage.ILocalStorageService LocalStorage
+
+<EditForm Model="@_model" OnValidSubmit="@OnSubmitAsync">
     <DataAnnotationsValidator/>
 
     <div class="mb flex flex-center">
@@ -53,6 +55,9 @@
     private Task ShowModalAsync() => _dialog.ShowModalAsync();
 
     private async Task OnModalClose() {
+        AppState.History.Add(_model);
+        await LocalStorage.SetItemAsStringAsync("data", AppState.History.ToString()!);
+        AppState.NotifyChanges(_model, null);
         _model = new();
     }
 }

@@ -21,13 +21,14 @@
 
     public async Task ShowModalAsync() {
         await JsRuntime.InvokeVoidAsync("showModal", "result-dialog");
+        StateHasChanged();
     }
 
     public async Task HideModalAsync() {
         await JsRuntime.InvokeVoidAsync("hideModal", "result-dialog");
+        StateHasChanged();
 
         Navigation.NavigateTo("#history");
-
         await OnModalCloseCallback.InvokeAsync();
     }
 }
